@@ -1,0 +1,28 @@
+/* PageLayout from @exp-textura/react handles all layout.
+   This file is intentionally minimal. */
+
+/* ── VerticalTabBar Width Constraint ───────────────────────────────────── */
+.exp-textura_page-layout_vertical_tab_bar {
+  width: 216px;
+  min-width: 216px;
+  max-width: 216px;
+  flex-shrink: 0;
+}
+
+/* ── Navigation Styling for reaching/exceeding editor workflow ──── */
+.page-layout-reaching-exceeding-editor .exp-textura_main-nav_header {
+  padding-top: 0px !important;
+}
+
+.page-layout-reaching-exceeding-editor .exp-textura_page-layout_main_nav {
+  margin-top: 0px !important;
+}
+
+/* ── Navigation Styling for reaching/exceeding admin workflow ──── */
+.page-layout-reaching-exceeding-admin .exp-textura_main-nav_header {
+  padding-top: 50px !important;
+}
+
+.page-layout-reaching-exceeding-admin .exp-textura_page-layout_main_nav {
+  margin-top: -50px !important;
+}

@@ -1,0 +1,23 @@
+/* Notification Sidebar - Textura Native Navigation */
+
+.notification-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 8px 0;
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #6B7280;
+  letter-spacing: 0.5px;
+  padding: 8px 12px;
+  margin-bottom: 4px;
+}
+
+.tier-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+}

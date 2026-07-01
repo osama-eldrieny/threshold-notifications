@@ -1,0 +1,102 @@
+/* Textura Design System CSS Variables */
+/* These tokens come directly from the Textura MCP Design System */
+
+:root {
+  /* Z-Index */
+  --ntx-z-index-dynamic: 1000;
+  --ntx-z-index-overlay: 1000001;
+
+  /* Main Navigation Colors */
+  --ntx-main-nav-background-color: #000426;
+  --ntx-main-nav-color: white;
+  --ntx-main-nav-background-color-expanded: #223046;
+  --ntx-main-nav-background-color-selected: #FF987B;
+
+  /* Neutral Colors */
+  --ntx-color-neutral-100: #e7e7e7;
+  --ntx-color-neutral-200: #d0d0d0;
+  --ntx-color-neutral-300: #b9b9b9;
+  --ntx-color-neutral-400: #a2a2a2;
+  --ntx-color-neutral-500: #8b8b8b;
+  --ntx-color-neutral-600: #737373;
+  --ntx-color-neutral-700: #5c5c5c;
+  --ntx-color-neutral-800: #454545;
+  --ntx-color-neutral-900: #2e2e2e;
+  --ntx-color-neutral-1000: #171717;
+  --ntx-color-neutral-white: #ffffff;
+  --ntx-color-neutral-black: #000000;
+
+  /* Transparency */
+  --ntx-color-transparency-transparent: rgba(255, 255, 255, 0);
+  --ntx-color-transparency-white-15: rgba(255, 255, 255, 0.15);
+  --ntx-color-transparency-white-12: rgba(255, 255, 255, 0.12);
+
+  /* Focus Ring */
+  --ntx-focus-ring-outline: 2px solid;
+  --ntx-focus-ring-outline-color: #000000;
+  --ntx-focus-ring-outline-offset: 2px;
+  --ntx-focus-ring-box-shadow: none;
+
+  /* Typography - Base */
+  --ntx-font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --ntx-font-size-base: 14px;
+  --ntx-font-weight-regular: 400;
+  --ntx-font-weight-medium: 500;
+  --ntx-font-weight-semibold: 600;
+  --ntx-font-weight-bold: 700;
+  --ntx-line-height-tight: 1.25;
+  --ntx-line-height-normal: 1.5;
+  --ntx-line-height-relaxed: 1.75;
+
+  /* Spacing (8px Grid) */
+  --ntx-spacing-0: 0;
+  --ntx-spacing-1: 4px;
+  --ntx-spacing-2: 8px;
+  --ntx-spacing-3: 12px;
+  --ntx-spacing-4: 16px;
+  --ntx-spacing-5: 20px;
+  --ntx-spacing-6: 24px;
+  --ntx-spacing-8: 32px;
+  --ntx-spacing-10: 40px;
+  --ntx-spacing-12: 48px;
+
+  /* Border Radius */
+  --ntx-radius-none: 0;
+  --ntx-radius-sm: 4px;
+  --ntx-radius-md: 6px;
+  --ntx-radius-lg: 8px;
+  --ntx-radius-full: 9999px;
+
+  /* Transitions */
+  --ntx-transition-fast: 0.15s ease;
+  --ntx-transition-normal: 0.2s ease;
+  --ntx-transition-slow: 0.3s ease;
+
+  /* Shadows */
+  --ntx-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --ntx-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --ntx-shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  /* Border Colors */
+  --ntx-color-border-default: #e0e5eb;
+  --ntx-color-border-strong: #c5cdd8;
+  --ntx-color-border-weak: #eff1f4;
+
+  /* Background Colors */
+  --ntx-color-background-default: #ffffff;
+  --ntx-color-background-strong: #eff1f4;
+
+  /* Card Tokens */
+  --ntx-card-border-radius: 4px;
+  --ntx-card-border-width: 1px;
+  --ntx-card-flat-background-enabled: #ffffff;
+  --ntx-card-flat-border-enabled: #e0e5eb;
+  --ntx-card-elevated-background-enabled: #ffffff;
+  --ntx-card-elevated-border-enabled: rgba(255, 255, 255, 0);
+
+  /* Elevation - 1Raised (for cards, raised elements) */
+  --ntx-elevation-1raised: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 2px 1px rgba(0, 0, 0, 0.15);
+  
+  /* Elevation - 2Floating (for floating elements like dropdowns) */
+  --ntx-elevation-2floating: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+}

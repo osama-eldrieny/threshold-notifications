@@ -1,0 +1,101 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   Workflow Page Styles
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.workflow-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* ── Header Section ────────────────────────────────────────────────────── */
+.workflow-header-section {
+  padding: 32px 32px 0 32px;
+}
+
+.workflow-header-section h1,
+.workflow-header-section .exp-textura_header_title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-navy-900, #0F1C3F);
+  display: block;
+  margin: 0;
+}
+
+/* ── Tabs Section ──────────────────────────────────────────────────────── */
+.workflow-tabs-section {
+  padding: 0 32px;
+  margin-top: 24px;
+}
+
+.tabs-with-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.tabs-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* ── Workflow List Section ─────────────────────────────────────────────── */
+.workflow-list-section {
+  padding: 24px 32px 32px 32px;
+  flex: 1;
+  overflow: auto;
+}
+
+.workflow-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.workflow-name {
+  font-weight: 600;
+  color: var(--color-navy-900, #0F1C3F);
+}
+
+/* ── Success Rate Styling ──────────────────────────────────────────────── */
+.success-rate {
+  font-weight: 600;
+}
+
+.success-rate.high {
+  color: #2E8540;
+}
+
+.success-rate.medium {
+  color: #F59E0B;
+}
+
+.success-rate.low {
+  color: #DC2626;
+}
+
+/* ── Navigation Styling for reaching/exceeding editor workflow ──── */
+.page-layout-reaching-exceeding-editor .exp-textura_main-nav_header {
+  padding-top: 50px !important;
+}
+
+.page-layout-reaching-exceeding-editor .exp-textura_page-layout_main_nav {
+  margin-top: -50px !important;
+}
+
+/* ── Responsive Design ─────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .workflow-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .workflow-stats {
+    grid-template-columns: 1fr;
+  }
+}

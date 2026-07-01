@@ -1,0 +1,139 @@
+.email-template {
+  min-height: 100%;
+}
+
+.email-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.email-container {
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: block;
+}
+
+/* Header */
+.email-header {
+  background: #0F1C3F;
+  padding: 28px 40px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 110px;
+}
+
+.logo-text {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  font-family: 'Georgia', serif;
+  position: relative;
+}
+
+.logo-text::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #FF6D00;
+  border-radius: 50%;
+  position: absolute;
+  top: 4px;
+  right: -10px;
+}
+
+/* Body */
+.email-body {
+  padding: 40px;
+}
+
+.email-section {
+  margin-bottom: 24px;
+}
+
+.email-label {
+  font-size: 14px;
+  color: #6B7280;
+  margin: 0 0 8px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.email-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0F1C3F;
+  margin: 0;
+  line-height: 1.3;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.email-content {
+  border-top: 1px solid #E5E7EB;
+  padding-top: 28px;
+}
+
+.email-greeting {
+  font-size: 16px;
+  color: #374151;
+  margin: 0 0 16px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.email-body-text {
+  font-size: 16px;
+  color: #374151;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.email-your-move {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 28px;
+}
+
+.your-move-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #374151;
+  margin: 0;
+  white-space: nowrap;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.your-move-text {
+  font-size: 16px;
+  color: #374151;
+  margin: 0;
+  line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* CTAs - Using Textura Buttons */
+.email-ctas {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+/* Footer */
+.email-footer {
+  background: #F9FAFB;
+  padding: 20px 40px;
+  border-top: 1px solid #E5E7EB;
+}
+
+.footer-text {
+  font-size: 12px;
+  color: #9CA3AF;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}

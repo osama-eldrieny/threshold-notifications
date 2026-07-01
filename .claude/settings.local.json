@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(run)",
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:5173)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(pkill -f \"vite\")",
+      "Bash(mkdir -p /Users/osamaeldrieny/Sandbox/my-first-project/.claude/skills/pointer)",
+      "Bash(curl -o /Users/osamaeldrieny/Sandbox/my-first-project/.claude/skills/pointer/SKILL.md https://raw.githubusercontent.com/osama-eldrieny/Pointer/main/.claude/skills/pointer/SKILL.md)",
+      "Bash(curl -s http://localhost:5173/)",
+      "Bash(chmod +x /private/tmp/claude-501/-Users-osamaeldrieny-Sandbox-my-first-project/25673239-4592-4e15-ac4e-c8605b9dd0a6/scratchpad/test-routes.sh)",
+      "Bash(/private/tmp/claude-501/-Users-osamaeldrieny-Sandbox-my-first-project/25673239-4592-4e15-ac4e-c8605b9dd0a6/scratchpad/test-routes.sh)",
+      "Bash(chmod +x /private/tmp/claude-501/-Users-osamaeldrieny-Sandbox-my-first-project/25673239-4592-4e15-ac4e-c8605b9dd0a6/scratchpad/verify-architecture.sh)",
+      "Bash(/private/tmp/claude-501/-Users-osamaeldrieny-Sandbox-my-first-project/25673239-4592-4e15-ac4e-c8605b9dd0a6/scratchpad/verify-architecture.sh)",
+      "Bash(curl -s \"https://pointer2.fly.dev/api/pending?project_id=proj_1782739877952_9u2vys\")",
+      "Bash(curl -X POST \"https://pointer2.fly.dev/api/comments/c_1782744858407_m0haap/applied?project_id=proj_1782739877952_9u2vys\")",
+      "Bash(curl -X POST \"https://pointer2.fly.dev/api/pending/clear?project_id=proj_1782739877952_9u2vys\")",
+      "Bash(curl -X POST \"https://pointer2.fly.dev/api/comments/c_1782745168976_jhc1mj/applied?project_id=proj_1782739877952_9u2vys\")",
+      "Bash(curl -X POST \"https://pointer2.fly.dev/api/comments/c_1782745581976_jvp9vs/applied?project_id=proj_1782739877952_9u2vys\" -s)",
+      "Bash(curl -X POST \"https://pointer2.fly.dev/api/comments/c_1782745696974_exxj71/applied?project_id=proj_1782739877952_9u2vys\" -s)",
+      "Bash(curl -X POST \"https://pointer2.fly.dev/api/pending/clear?project_id=proj_1782739877952_9u2vys\" -s)",
+      "Bash(curl -X POST \"https://pointer2.fly.dev/api/comments/c_1782746193340_ot8hlr/applied?project_id=proj_1782739877952_9u2vys\" -s)",
+      "Bash(curl -X POST \"https://pointer2.fly.dev/api/comments/c_1782746838113_ar7h1a/applied?project_id=proj_1782739877952_9u2vys\" -s)",
+      "Bash(curl *)",
+      "Bash(grep -E \"\\\\.\\(tsx?|json\\)$\")",
+      "Artifact",
+      "Bash(grep -v \"^$\")",
+      "Bash(sed -i \"\" \"s/'View Dashboard'/'View dashboard'/g\" /Users/osamaeldrieny/Sandbox/my-first-project/src/data/notifications/approaching.js)",
+      "Bash(sed -i \"\" \"s/'View Dashboard'/'View dashboard'/g\" /Users/osamaeldrieny/Sandbox/my-first-project/src/data/notifications/reaching.js)",
+      "Bash(sed -i \"\" \"s/'View Dashboard'/'View dashboard'/g\" /Users/osamaeldrieny/Sandbox/my-first-project/src/data/notifications/exceeding.js)",
+      "Bash(sed -i \"\" \"s/'Go to Account'/'Go to account'/g\" /Users/osamaeldrieny/Sandbox/my-first-project/src/data/notifications/approaching.js)",
+      "Bash(sed -i \"\" \"s/'Go to Account'/'Go to account'/g\" /Users/osamaeldrieny/Sandbox/my-first-project/src/data/notifications/reaching.js)",
+      "Bash(sed -i \"\" \"s/'Go to Account'/'Go to account'/g\" /Users/osamaeldrieny/Sandbox/my-first-project/src/data/notifications/exceeding.js)",
+      "Bash(grep -E \"\\\\.\\(js|jsx|ts|tsx\\)$\")",
+      "Bash(sips -g pixelWidth -g pixelHeight Email.png slack.png nintex.png)"
+    ]
+  }
+}

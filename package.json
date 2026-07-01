@@ -1,0 +1,23 @@
+{
+  "name": "my-first-project",
+  "version": "1.0.0",
+  "description": "A React project with Textura list component",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@exp-textura/icons": "^0.7.0",
+    "@exp-textura/react": "^0.9.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite": "^4.3.0"
+  }
+}

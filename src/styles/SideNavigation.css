@@ -1,0 +1,313 @@
+@import './textura-tokens.css';
+
+/* ─── Textura MainNav Component — mirrors MCP Preview story ─────────────────── */
+
+.textura-main-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 256px;
+  background-color: var(--ntx-main-nav-background-color);
+  color: var(--ntx-main-nav-color);
+  display: flex;
+  flex-direction: column;
+  transition: width var(--ntx-transition-slow);
+  z-index: var(--ntx-z-index-dynamic);
+  overflow: hidden;
+}
+
+.textura-main-nav.collapsed { width: 64px; }
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+.textura-main-nav-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ntx-spacing-2);
+  padding: var(--ntx-spacing-4) var(--ntx-spacing-3) var(--ntx-spacing-3);
+  border-bottom: 1px solid var(--ntx-color-transparency-white-12);
+  flex-shrink: 0;
+}
+
+.textura-main-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--ntx-spacing-2);
+  justify-content: space-between;
+}
+
+.nav-brand-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--ntx-radius-sm);
+  background: #fff;
+  color: #000426;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--ntx-font-weight-bold);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.nav-brand-name {
+  font-size: 15px;
+  font-weight: var(--ntx-font-weight-semibold);
+  color: var(--ntx-main-nav-color);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.textura-main-nav-collapse-trigger {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ntx-radius-sm);
+  transition: background-color var(--ntx-transition-normal), color var(--ntx-transition-normal);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.textura-main-nav-collapse-trigger:hover {
+  background-color: rgba(255,255,255,0.1);
+  color: var(--ntx-main-nav-color);
+}
+
+/* Environment select (context-switcher) */
+.textura-main-nav-select { padding: 0 0 var(--ntx-spacing-1); }
+
+.nav-env-select {
+  width: 100%;
+  padding: var(--ntx-spacing-1) var(--ntx-spacing-2);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--ntx-radius-sm);
+  color: var(--ntx-main-nav-color);
+  font-size: 12px;
+  font-family: var(--ntx-font-family-base);
+  cursor: pointer;
+}
+
+.nav-env-select option,
+.nav-env-select optgroup {
+  background: #000426;
+  color: #fff;
+}
+
+/* ── Content (scrollable nav items) ──────────────────────────────────────── */
+.textura-main-nav-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--ntx-spacing-2) 0;
+  scrollbar-width: none;
+}
+.textura-main-nav-content::-webkit-scrollbar { display: none; }
+
+/* ── Footer ───────────────────────────────────────────────────────────────── */
+.textura-main-nav-footer {
+  border-top: 1px solid var(--ntx-color-transparency-white-12);
+  padding: var(--ntx-spacing-2) 0;
+  flex-shrink: 0;
+}
+
+.textura-main-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ── Nav Item ─────────────────────────────────────────────────────────────── */
+.textura-main-nav-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--ntx-spacing-3);
+  padding: 9px var(--ntx-spacing-3);
+  border: none;
+  background: transparent;
+  color: rgba(255,255,255,0.65);
+  font-size: 13px;
+  font-weight: var(--ntx-font-weight-medium);
+  font-family: var(--ntx-font-family-base);
+  cursor: pointer;
+  transition: all var(--ntx-transition-normal);
+  text-align: left;
+  border-radius: var(--ntx-radius-sm);
+  margin: 1px var(--ntx-spacing-2);
+  width: calc(100% - var(--ntx-spacing-4));
+}
+
+.textura-main-nav-item:hover {
+  background-color: rgba(255,255,255,0.08);
+  color: var(--ntx-main-nav-color);
+}
+
+.textura-main-nav-item.current {
+  background-color: rgba(255,255,255,0.12);
+  color: var(--ntx-main-nav-color);
+}
+
+.textura-main-nav-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.textura-main-nav-item-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Collapsed: icon-only, centered */
+.textura-main-nav.collapsed .textura-main-nav-item {
+  justify-content: center;
+  padding: 10px;
+  width: calc(100% - 16px);
+}
+
+/* Divider */
+.textura-main-nav-divider {
+  height: 1px;
+  background-color: rgba(255,255,255,0.1);
+  margin: var(--ntx-spacing-2) var(--ntx-spacing-3);
+  list-style: none;
+}
+
+/* Indicator (chevron) */
+.textura-main-nav-indicator {
+  margin-left: auto;
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  flex-shrink: 0;
+}
+
+/* ── Menu (submenu) ───────────────────────────────────────────────────────── */
+.textura-main-nav-menu { list-style: none; }
+.textura-main-nav-menu-trigger { cursor: pointer; }
+
+/* Inline submenu (nav expanded) */
+.textura-main-nav-menu-content.inline {
+  list-style: none;
+  padding: 0;
+  margin: 2px 0 4px var(--ntx-spacing-6);
+  border-left: 2px solid rgba(255,255,255,0.12);
+}
+
+.textura-main-nav-menu-content.inline .textura-main-nav-item {
+  font-size: 12px;
+  padding: 7px var(--ntx-spacing-3);
+  color: rgba(255,255,255,0.5);
+}
+
+/* Flyout submenu (nav collapsed) */
+.textura-main-nav-menu-content.flyout {
+  position: absolute;
+  left: 64px;
+  background: #0a0d2e;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--ntx-radius-md);
+  padding: var(--ntx-spacing-2) 0;
+  min-width: 180px;
+  box-shadow: var(--ntx-shadow-lg);
+  list-style: none;
+  z-index: var(--ntx-z-index-overlay);
+}
+
+.textura-main-nav-menu-content.flyout .textura-main-nav-item {
+  width: calc(100% - 16px);
+  margin: 1px var(--ntx-spacing-2);
+}
+
+/* ── User row (footer) ───────────────────────────────────────────────────── */
+.textura-main-nav-user {
+  width: calc(100% - var(--ntx-spacing-4));
+  display: flex;
+  align-items: center;
+  gap: var(--ntx-spacing-2);
+  padding: var(--ntx-spacing-2) var(--ntx-spacing-3);
+  border: none;
+  background: transparent;
+  color: rgba(255,255,255,0.65);
+  font-size: 13px;
+  font-family: var(--ntx-font-family-base);
+  cursor: pointer;
+  border-radius: var(--ntx-radius-sm);
+  margin: 2px var(--ntx-spacing-2);
+  text-align: left;
+  transition: background-color var(--ntx-transition-normal);
+  position: relative;
+}
+
+.textura-main-nav-user:hover {
+  background: rgba(255,255,255,0.08);
+  color: var(--ntx-main-nav-color);
+}
+
+.textura-main-nav-user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--ntx-radius-full);
+  background: #3b82f6;
+  color: #fff;
+  font-size: 11px;
+  font-weight: var(--ntx-font-weight-semibold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.textura-main-nav-user-notifications {
+  position: absolute;
+  top: 6px;
+  left: 32px;
+  min-width: 16px;
+  height: 16px;
+  border-radius: var(--ntx-radius-full);
+  background: #ef4444;
+  color: #fff;
+  font-size: 10px;
+  font-weight: var(--ntx-font-weight-bold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+/* Badge inside menu items */
+.nav-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 6px;
+  border-radius: var(--ntx-radius-full);
+  font-size: 11px;
+  font-weight: var(--ntx-font-weight-semibold);
+  margin-left: auto;
+}
+
+.nav-badge--critical { background: #ef4444; color: #fff; }
+
+/* Screen-reader only */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+
+/* Pushed item (Gallery) — floats to gap before utility group */
+.nav-item-pushed { margin-top: var(--ntx-spacing-2); }

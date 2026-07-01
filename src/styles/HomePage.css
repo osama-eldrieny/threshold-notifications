@@ -1,0 +1,199 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   Home Page Styles
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.home-page {
+  padding: 32px 0;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* ── Greeting Header ────────────────────────────────────────────────────── */
+.greeting-header {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--color-navy-900, #0F1C3F);
+  margin: 0 0 32px 0;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* ── Quick Action Cards ────────────────────────────────────────────────── */
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.quick-action-card {
+  background: var(--ntx-card-elevated-background-enabled);
+  border-radius: var(--ntx-card-border-radius);
+  border: var(--ntx-card-border-width) solid var(--ntx-card-elevated-border-enabled);
+  box-shadow: var(--ntx-elevation-1raised);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.quick-action-card:hover {
+  box-shadow: var(--ntx-elevation-2floating);
+}
+
+.card-header-strip {
+  height: 36px;
+  width: 100%;
+}
+
+.card-peach .card-header-strip {
+  background: var(--ntx-color-brand-tertiary-orange-pale);
+}
+
+.card-purple .card-header-strip {
+  background: var(--ntx-color-asset-user-interface-weak);
+}
+
+.card-pink .card-header-strip {
+  background: var(--ntx-color-asset-automation-weak);
+}
+
+.card-content {
+  padding: 24px;
+  margin-top: -36px;
+}
+
+.card-icon-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.card-icon-badge svg {
+  width: 16px;
+  height: 16px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-navy-900, #0F1C3F);
+  margin: 0 0 8px 0;
+}
+
+.card-description {
+  font-size: 14px;
+  color: var(--color-gray-700, #5A5F73);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Recents Section ───────────────────────────────────────────────────── */
+.recents-section {
+  margin-bottom: 48px;
+}
+
+.section-header {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-navy-900, #0F1C3F);
+  margin: 0 0 20px 0;
+}
+
+/* ── Starter Solutions Section ─────────────────────────────────────────── */
+.starter-solutions-section {
+  margin-bottom: 48px;
+}
+
+.section-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.solution-card {
+  background: var(--ntx-card-elevated-background-enabled);
+  border-radius: var(--ntx-card-border-radius);
+  border: var(--ntx-card-border-width) solid var(--ntx-card-elevated-border-enabled);
+  padding: 24px;
+  box-shadow: var(--ntx-elevation-1raised);
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.solution-card:hover {
+  box-shadow: var(--ntx-elevation-2floating);
+}
+
+.solution-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.solution-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.solution-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-navy-900, #0F1C3F);
+  margin: 0;
+  line-height: 20px;
+}
+
+.solution-description {
+  font-size: 12px;
+  color: var(--color-gray-700, #5A5F73);
+  margin: 0;
+  line-height: 16px;
+}
+
+/* ── Example List Section ──────────────────────────────────────────────── */
+.example-list-section {
+  margin-bottom: 48px;
+}
+
+/* ── Responsive Design ─────────────────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .quick-actions-grid,
+  .solutions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .home-page {
+    padding: 24px;
+  }
+
+  .greeting-header {
+    font-size: 28px;
+  }
+
+  .quick-actions-grid,
+  .solutions-grid {
+    grid-template-columns: 1fr;
+  }
+}
