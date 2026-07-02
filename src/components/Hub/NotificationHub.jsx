@@ -91,7 +91,7 @@ export function NotificationHub() {
               <div className="cards-grid">
                 {Object.entries(availabilityMatrix).map(([userType, tiers]) => {
                   const channels = tiers[tier] || [];
-                  if (channels.length === 0) return null;
+                  if (channels.length === 0 && userType !== 'editor') return null;
 
                   return (
                     <NotificationCard
