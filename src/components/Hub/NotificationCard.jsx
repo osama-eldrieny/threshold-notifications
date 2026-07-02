@@ -44,7 +44,7 @@ export function NotificationCard({ tier, userType, userLabel, channels }) {
           )}
         </>
 
-        {userType !== 'csm' && (
+        {!['csm', 'accountManager', 'customerSuccess', 'accountOwner'].includes(userType) && (
           <>
             <div className="card-link inapp-home-link">
               <span className="link-icon"><img src={nintexIcon} alt="Nintex" /></span>
