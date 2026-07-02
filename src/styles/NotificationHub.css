@@ -299,7 +299,7 @@
 }
 
 .figma-link:hover .link-text {
-  opacity: 0.8;
+  color: #e5e7eb;
 }
 
 .figma-link .status-badge {

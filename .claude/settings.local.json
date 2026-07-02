@@ -43,7 +43,9 @@
       "Bash(netlify api *)",
       "Bash(git add *)",
       "Bash(git commit *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(read id *)",
+      "Bash(netlify unlink *)"
     ]
   }
 }
