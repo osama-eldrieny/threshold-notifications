@@ -69,5 +69,16 @@ export const reachingContent = {
       cta1: 'Go to account',
       cta2: 'View dashboard'
     }
+  },
+  editor: {
+    email: {
+      subject: 'ACTION REQUIRED: Workflow Instances Quota Critical',
+      title: 'Critical: Workflow Instances at 95% Limit',
+      greeting: 'Hello,',
+      body: 'Your organization\'s Workflow Instances quota is now critically high at 95% usage.\n\nCurrent Usage: 950 / 1000 instances\n\nTo avoid service disruptions, please take immediate action:\n1. Review and optimize existing workflows\n2. Archive or delete unused workflows\n3. Contact your administrator about expanding your quota\n\nNew workflow creation may be limited when quota is exceeded.',
+      yourMove: 'Urgently optimize workflow usage or contact admin.',
+      cta1: 'Manage workflows',
+      cta2: 'Contact admin'
+    }
   }
 };

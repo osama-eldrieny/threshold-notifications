@@ -83,5 +83,16 @@ export const approachingContent = {
       cta1: 'Go to account',
       cta2: 'View dashboard'
     }
+  },
+  editor: {
+    email: {
+      subject: 'Usage Notice: Workflow Instances Approaching Limit',
+      title: 'Workflow Instances Usage at 80%',
+      greeting: 'Hello,',
+      body: 'Your organization is currently using 80% of your allocated Workflow Instances quota.\n\nCurrent Usage: 800 / 1000 instances\n\nThis is a good time to review your active workflows and optimize resource usage, or contact your administrator to discuss expanding your allocation.',
+      yourMove: 'Review active workflows and optimize usage.',
+      cta1: 'View workflows',
+      cta2: 'Contact admin'
+    }
   }
 };

@@ -69,5 +69,16 @@ export const exceedingContent = {
       cta1: 'Go to account',
       cta2: 'View dashboard'
     }
+  },
+  editor: {
+    email: {
+      subject: 'CRITICAL: Workflow Instances Quota EXCEEDED',
+      title: 'CRITICAL: Quota Exceeded - Service at Risk',
+      greeting: 'Hello,',
+      body: 'CRITICAL ALERT: Your organization has EXCEEDED its Workflow Instances quota by 5%.\n\nCurrent Usage: 1050 / 1000 instances\n\nYour account is now at CRITICAL status. Service disruptions and performance throttling may occur.\n\nIMPORTANT ACTIONS REQUIRED:\n1. Immediately deactivate or delete non-essential workflows\n2. Optimize remaining workflows for efficiency\n3. Contact your administrator for emergency quota expansion\n4. Review usage patterns to prevent future overages\n\nFailure to reduce usage may result in service limitations.',
+      yourMove: 'Take immediate action to reduce usage.',
+      cta1: 'Delete workflows',
+      cta2: 'Emergency help'
+    }
   }
 };

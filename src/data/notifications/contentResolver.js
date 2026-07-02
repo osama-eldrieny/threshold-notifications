@@ -58,6 +58,11 @@ export const availabilityMatrix = {
     approaching: ['email'],
     reaching: ['email'],
     exceeding: ['email']
+  },
+  editor: {
+    approaching: ['email'],
+    reaching: ['email'],
+    exceeding: ['email']
   }
 };
 
@@ -80,5 +85,6 @@ export const userTypeLabels = {
   accountOwner: 'Account Owner',
   customerSuccess: 'Customer Success',
   accountManager: 'Account Manager',
-  csm: 'CSM'
+  csm: 'CSM',
+  editor: 'Editor'
 };

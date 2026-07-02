@@ -33,7 +33,17 @@
       "Bash(sed -i \"\" \"s/'Go to Account'/'Go to account'/g\" /Users/osamaeldrieny/Sandbox/my-first-project/src/data/notifications/reaching.js)",
       "Bash(sed -i \"\" \"s/'Go to Account'/'Go to account'/g\" /Users/osamaeldrieny/Sandbox/my-first-project/src/data/notifications/exceeding.js)",
       "Bash(grep -E \"\\\\.\\(js|jsx|ts|tsx\\)$\")",
-      "Bash(sips -g pixelWidth -g pixelHeight Email.png slack.png nintex.png)"
+      "Bash(sips -g pixelWidth -g pixelHeight Email.png slack.png nintex.png)",
+      "Bash(npm list *)",
+      "Bash(netlify status *)",
+      "Bash(netlify link *)",
+      "Bash(netlify sites:list *)",
+      "Bash(netlify deploy *)",
+      "Bash(netlify deploy:list *)",
+      "Bash(netlify api *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
     ]
   }
 }
