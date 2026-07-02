@@ -60,9 +60,9 @@ export const availabilityMatrix = {
     exceeding: ['email']
   },
   editor: {
-    approaching: ['email'],
-    reaching: ['email'],
-    exceeding: ['email']
+    approaching: [],
+    reaching: [],
+    exceeding: []
   }
 };
 
