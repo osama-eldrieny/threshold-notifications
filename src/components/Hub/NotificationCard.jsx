@@ -44,31 +44,35 @@ export function NotificationCard({ tier, userType, userLabel, channels }) {
           )}
         </>
 
-        <div className="card-link inapp-home-link">
-          <span className="link-icon"><img src={nintexIcon} alt="Nintex" /></span>
-          <a
-            href={`#/${tier}/${userType}/home`}
-            className="link-text"
-            title="View in-app home notification"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            In-App Home
-          </a>
-        </div>
+        {userType !== 'csm' && (
+          <>
+            <div className="card-link inapp-home-link">
+              <span className="link-icon"><img src={nintexIcon} alt="Nintex" /></span>
+              <a
+                href={`#/${tier}/${userType}/home`}
+                className="link-text"
+                title="View in-app home notification"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                In-App Home
+              </a>
+            </div>
 
-        <div className="card-link inapp-product-link">
-          <span className="link-icon"><img src={nintexIcon} alt="Nintex" /></span>
-          <a
-            href={`#/${tier}/${userType}/workflow`}
-            className="link-text"
-            title="View in-app product notification"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            In-App Product
-          </a>
-        </div>
+            <div className="card-link inapp-product-link">
+              <span className="link-icon"><img src={nintexIcon} alt="Nintex" /></span>
+              <a
+                href={`#/${tier}/${userType}/workflow`}
+                className="link-text"
+                title="View in-app product notification"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                In-App Product
+              </a>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
