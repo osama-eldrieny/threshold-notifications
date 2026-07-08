@@ -35,6 +35,13 @@ export function SideNav({ tier, currentPage, userType, onUserTypeChange }) {
       href: `#/${tier}/${userType}/workflow`,
       isCurrent: currentPage === 'workflow'
     },
+    {
+      type: 'item',
+      label: 'Dashboard',
+      icon: <Data />,
+      href: `#/dashboard/customer`,
+      isCurrent: currentPage === 'dashboardCustomer' || currentPage === 'dashboardTeam'
+    },
     { type: 'divider' },
     { type: 'item', label: 'My Nintex', icon: <span style={{ width: '1em', height: '1em', display: 'inline-flex' }}><NintexLogoSquare /></span>, as: 'button' },
     { type: 'item', label: 'Gallery', icon: <Gallery />, href: '#', pushed: true },

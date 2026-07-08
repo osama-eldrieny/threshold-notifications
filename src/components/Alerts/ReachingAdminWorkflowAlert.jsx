@@ -19,6 +19,7 @@ export function ReachingAdminWorkflowAlert() {
             <Button
               size="sm"
               buttonType="secondary"
+              onClick={() => { window.location.hash = '#/dashboard/customer'; }}
             >
               View dashboard
             </Button>

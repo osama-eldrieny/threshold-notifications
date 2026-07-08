@@ -156,7 +156,7 @@ export default function AdminHome() {
               <Avatar.Image src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop" />
               <Avatar.Fallback>SA</Avatar.Fallback>
             </Avatar>
-            <Badge variant="critical">{userMenuItems[1].badge}</Badge>
+            <Badge spacing="roomy" variant="critical">{userMenuItems[1].badge}</Badge>
             <MainNav.Indicator />
           </MainNav.MenuTrigger>
           <MainNav.MenuContent>
@@ -164,7 +164,7 @@ export default function AdminHome() {
               <MainNav.Item key={index}>
                 {item.label}
                 {item.badge && (
-                  <Badge style={{ marginInlineStart: 'auto' }}>{item.badge}</Badge>
+                  <Badge spacing="roomy" style={{ marginInlineStart: 'auto' }}>{item.badge}</Badge>
                 )}
               </MainNav.Item>
             ))}

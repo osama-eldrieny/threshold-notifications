@@ -20,6 +20,7 @@ export function ExceedingAdminHomeAlert() {
               size="sm"
               buttonType="secondary"
               style={{ borderColor: 'currentColor' }}
+              onClick={() => { window.location.hash = '#/dashboard/customer'; }}
             >
               View dashboard
             </Button>

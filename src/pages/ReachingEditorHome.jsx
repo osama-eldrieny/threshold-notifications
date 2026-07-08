@@ -156,7 +156,7 @@ export default function EditorHome() {
               <Avatar.Image src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop" />
               <Avatar.Fallback>RE</Avatar.Fallback>
             </Avatar>
-            <Badge variant="critical">{userMenuItems[1].badge}</Badge>
+            <Badge spacing="roomy" variant="critical">{userMenuItems[1].badge}</Badge>
             <MainNav.Indicator />
           </MainNav.MenuTrigger>
           <MainNav.MenuContent>
@@ -164,7 +164,7 @@ export default function EditorHome() {
               <MainNav.Item key={index}>
                 {item.label}
                 {item.badge && (
-                  <Badge style={{ marginInlineStart: 'auto' }}>{item.badge}</Badge>
+                  <Badge spacing="roomy" style={{ marginInlineStart: 'auto' }}>{item.badge}</Badge>
                 )}
               </MainNav.Item>
             ))}

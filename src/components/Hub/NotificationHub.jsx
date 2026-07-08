@@ -81,6 +81,26 @@ export function NotificationHub() {
             </div>
           </section>
 
+          <section className="dashboard-section">
+            <div className="dashboard-header">
+              <h3>Threshold Dashboards</h3>
+            </div>
+            <div className="dashboard-links">
+              <div className="dashboard-link">
+                <a href="#/dashboard/team" target="_blank" rel="noopener noreferrer" className="link-text">
+                  Internal Team Dashboard
+                </a>
+                <span className="status-badge in-progress">In Progress</span>
+              </div>
+              <div className="dashboard-link">
+                <a href="#/dashboard/customer" target="_blank" rel="noopener noreferrer" className="link-text">
+                  Customer Dashboard
+                </a>
+                <span className="status-badge in-progress">In Progress</span>
+              </div>
+            </div>
+          </section>
+
           {tiers.map((tier) => (
             <section key={tier} id={`hub-${tier}`} className="tier-section">
               <div className="tier-header">

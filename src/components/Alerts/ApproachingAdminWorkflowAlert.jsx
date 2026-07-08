@@ -32,6 +32,7 @@ export function ApproachingAdminWorkflowAlert() {
             size="sm"
             buttonType="secondary"
             style={{ borderColor: 'currentColor' }}
+            onClick={() => { window.location.hash = '#/dashboard/customer'; }}
           >
             View Dashboard
           </Button>

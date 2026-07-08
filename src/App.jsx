@@ -7,6 +7,8 @@ import { HomePageContent } from './components/Home/HomePageContent';
 import { WorkflowPageContent } from './components/Workflow/WorkflowPageContent';
 import { NotificationsPage } from './components/Notifications/NotificationsPage';
 import { NotificationHub } from './components/Hub/NotificationHub';
+import { InternalTeamDashboard } from './components/Dashboard/InternalTeamDashboard';
+import { CustomerDashboard } from './components/Dashboard/CustomerDashboard';
 import './styles/App.css';
 
 function App() {
@@ -48,6 +50,35 @@ function App() {
   // Check if this is the hub page
   if (state.page === 'hub') {
     return <NotificationHub />;
+  }
+
+  // Check if this is the internal team dashboard (for all internal users)
+  if (state.page === 'dashboardTeam') {
+    return <InternalTeamDashboard />;
+  }
+
+  // Check if this is the customer dashboard (for admin/editor)
+  if (state.page === 'dashboardCustomer') {
+    return (
+      <PageLayout>
+        <PageLayout.SkipToContent />
+        <PageLayout.MainNav>
+          <SideNav
+            tier={state.tier}
+            currentPage={state.page}
+            userType={state.userType}
+            onUserTypeChange={handleUserTypeChange}
+          />
+        </PageLayout.MainNav>
+        <PageLayout.Main pageWidth="fullWidth">
+          <PageLayout.Body>
+            <PageLayout.BodyContent>
+              <CustomerDashboard userType={state.userType} />
+            </PageLayout.BodyContent>
+          </PageLayout.Body>
+        </PageLayout.Main>
+      </PageLayout>
+    );
   }
 
   return (
@@ -99,12 +130,24 @@ function App() {
 function parseRoute() {
   let hash = window.location.hash.slice(1) || '/';
 
-  // Parse URL: /#/notifications/tier/user/channel OR /#/tier/user/page or /#/page (home or workflow or hub)
+  // Parse URL: /#/dashboard/team OR /#/notifications/tier/user/channel OR /#/tier/user/page or /#/page
   const parts = hash.split('/').filter(Boolean);
 
   let tier = 'approaching';
   let userType = 'admin';
   let page = 'home';
+
+  // Check if this is a dashboard route
+  if (parts[0] === 'dashboard') {
+    if (parts[1] === 'team') {
+      page = 'dashboardTeam';
+      return { tier, userType, page };
+    }
+    if (parts[1] === 'customer') {
+      page = 'dashboardCustomer';
+      return { tier, userType, page };
+    }
+  }
 
   // Check if this is a notifications route
   if (parts[0] === 'notifications') {
