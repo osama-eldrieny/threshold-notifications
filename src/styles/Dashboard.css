@@ -18,6 +18,13 @@
   box-shadow: var(--ntx-drop-shadow-md) !important;
 }
 
+/* Customer Dashboard Gradient - Different color for customer pages only */
+.customer-dashboard .card-header,
+.customer-dashboard .exp-textura_header,
+.customer-dashboard .dashboard-links .dashboard-link {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
 /* Alerts */
 .alert-spacing {
   margin-bottom: 24px;
