@@ -314,6 +314,7 @@
   padding: 40px;
   border-radius: 40px;
   margin-top: 80px;
+  display: none;
 }
 
 .dashboard-header {
