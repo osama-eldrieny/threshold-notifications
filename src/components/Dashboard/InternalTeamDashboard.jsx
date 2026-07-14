@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import {
-  PageLayout, Header, Button, Card, Alert as TexturaAlert, Chip, Avatar,
-  TabBar, Tab, List, BarProgress, IconButton
+  PageLayout, Button, Card, Alert as TexturaAlert, Chip, Avatar,
+  List, BarProgress, IconButton, Menu
 } from '@exp-textura/react';
-import { Filter, Download } from '@exp-textura/icons/streamline-sl';
+import { Check, Visible, Users, Database, Checklist } from '@exp-textura/icons/streamline-sl';
 import { SideNav } from '../Layout/SideNav';
 import {
   accounts,
@@ -25,13 +25,13 @@ const tierColors = {
 
 export function InternalTeamDashboard() {
   const [selectedTab, setSelectedTab] = useState('all');
-  const [selectedAccountId, setSelectedAccountId] = useState(null);
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(10);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const selectedAccount = selectedAccountId
-    ? accounts.find((a) => a.id === selectedAccountId)
-    : null;
+  const navigateToAccount = (accountId) => {
+    window.location.hash = `#/dashboard/team/account/${accountId}`;
+  };
 
   // Flatten products from all accounts with account info
   const allProducts = accounts.flatMap((account) =>
@@ -46,16 +46,37 @@ export function InternalTeamDashboard() {
     }))
   );
 
-  // Filter products by tab
-  const filteredProducts = selectedTab === 'all'
+  // Filter products by tab (use dynamic tier calculation)
+  const tabFilteredProducts = selectedTab === 'all'
     ? allProducts
-    : allProducts.filter((p) => p.tier === selectedTab);
+    : allProducts.filter((p) => {
+      const dynamicTier = getTierByPercent(getPercent(p));
+      return dynamicTier === selectedTab;
+    });
 
-  // Sort by urgency and usage
+  // Filter products by search term
+  const filteredProducts = tabFilteredProducts.filter((p) => {
+    const searchLower = searchTerm.toLowerCase();
+    return (
+      p.accountName.toLowerCase().includes(searchLower) ||
+      p.name.toLowerCase().includes(searchLower) ||
+      p.assignedAM.toLowerCase().includes(searchLower) ||
+      p.region.toLowerCase().includes(searchLower)
+    );
+  });
+
+  // Default sort: by tier first (exceeding → reaching → approaching), then by usage %
   const sortedProducts = [...filteredProducts].sort((a, b) => {
-    const tierOrder = { exceeding: 0, reaching: 1, approaching: 2 };
-    const tierDiff = (tierOrder[a.tier] || 999) - (tierOrder[b.tier] || 999);
-    return tierDiff !== 0 ? tierDiff : getPercent(b) - getPercent(a);
+    const tierPriority = { exceeding: 0, reaching: 1, approaching: 2, none: 999 };
+    const aTier = getTierByPercent(getPercent(a)) || 'none';
+    const bTier = getTierByPercent(getPercent(b)) || 'none';
+    const aPriority = tierPriority[aTier];
+    const bPriority = tierPriority[bTier];
+    if (aPriority !== bPriority) {
+      return aPriority - bPriority;
+    } else {
+      return getPercent(b) - getPercent(a);
+    }
   });
 
   // Calculate pagination
@@ -74,12 +95,15 @@ export function InternalTeamDashboard() {
       accessorKey: 'accountName',
       header: 'Customer Account',
       cell: ({ row }) => (
-        <div className="account-cell">
+        <button
+          onClick={() => navigateToAccount(row.original.accountId)}
+          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}
+        >
           <Avatar name={row.original.accountName} size="sm">
             <Avatar.Fallback>{row.original.accountName.substring(0, 2).toUpperCase()}</Avatar.Fallback>
           </Avatar>
-          <span>{row.original.accountName}</span>
-        </div>
+          <span style={{ color: '#0f1c3f', textDecoration: 'underline', fontWeight: '500', fontSize: '14px' }}>{row.original.accountName}</span>
+        </button>
       ),
     },
     {
@@ -114,6 +138,7 @@ export function InternalTeamDashboard() {
     },
     {
       id: 'status',
+      accessorKey: 'status',
       header: 'Status',
       cell: ({ row }) => {
         const calculatedTier = getTierByPercent(getPercent(row.original));
@@ -152,13 +177,39 @@ export function InternalTeamDashboard() {
       id: 'actions',
       header: 'Actions',
       cell: ({ row }) => (
-        <Button
-          size="sm"
-          buttonType="secondary"
-          onClick={() => setSelectedAccountId(row.original.accountId)}
-        >
-          Details
-        </Button>
+        <Menu styleSlots={{ content: { width: 'auto', minWidth: 'auto' } }}>
+          <Menu.Trigger asChild>
+            <IconButton buttonType="secondary">
+              ⋮
+            </IconButton>
+          </Menu.Trigger>
+          <Menu.Content align="end" side="bottom" sideOffset={8}>
+            <Menu.Item onClick={() => navigateToAccount(row.original.accountId)}>
+              <Menu.ItemLeadingIcon>
+                <Visible style={{ width: '18px', height: '18px' }} />
+              </Menu.ItemLeadingIcon>
+              <Menu.ItemLabel>View</Menu.ItemLabel>
+            </Menu.Item>
+            <Menu.Item>
+              <Menu.ItemLeadingIcon>
+                <Users style={{ width: '18px', height: '18px' }} />
+              </Menu.ItemLeadingIcon>
+              <Menu.ItemLabel>Contact Customer</Menu.ItemLabel>
+            </Menu.Item>
+            <Menu.Item>
+              <Menu.ItemLeadingIcon>
+                <Database style={{ width: '18px', height: '18px' }} />
+              </Menu.ItemLeadingIcon>
+              <Menu.ItemLabel>Go to Salesforce</Menu.ItemLabel>
+            </Menu.Item>
+            <Menu.Item>
+              <Menu.ItemLeadingIcon>
+                <Checklist style={{ width: '18px', height: '18px' }} />
+              </Menu.ItemLeadingIcon>
+              <Menu.ItemLabel>Create Follow-up Task</Menu.ItemLabel>
+            </Menu.Item>
+          </Menu.Content>
+        </Menu>
       ),
     },
   ];
@@ -179,40 +230,9 @@ export function InternalTeamDashboard() {
           <PageLayout.BodyContent>
             <div className="dashboard-container">
               {/* Page Heading */}
-              <h1 style={{ fontSize: '24px', fontWeight: '700', marginBottom: '8px' }}>
+              <h1 style={{ fontSize: '24px', fontWeight: '700', marginBottom: '32px' }}>
                 Threshold Notifications — Team Dashboard
               </h1>
-              <p style={{ fontSize: '14px', color: '#6b7280', marginBottom: '24px' }}>
-                Monitor customer usage across all products and manage at-risk accounts
-              </p>
-
-              {/* Header with Actions */}
-              <Header>
-                <Header.Main>
-                  <Header.Content>
-                    <Header.Title>Threshold Notifications — Team Dashboard</Header.Title>
-                    <Header.Description>
-                      Monitor customer usage across all products and manage at-risk accounts
-                    </Header.Description>
-                  </Header.Content>
-                  <Header.Actions>
-                    <IconButton buttonType="secondary" aria-label="Filter">
-                      <Filter />
-                    </IconButton>
-                    <IconButton buttonType="secondary" aria-label="Download">
-                      <Download />
-                    </IconButton>
-                  </Header.Actions>
-                </Header.Main>
-                <TabBar value={selectedTab} onValueChange={setSelectedTab}>
-                  <TabBar.List>
-                    <Tab value="all">All Accounts ({accounts.length})</Tab>
-                    <Tab value="exceeding">Exceeding ({exceedingCount})</Tab>
-                    <Tab value="reaching">Reaching ({reachingCount})</Tab>
-                    <Tab value="approaching">Approaching ({approachingCount})</Tab>
-                  </TabBar.List>
-                </TabBar>
-              </Header>
 
               {/* Critical Alert */}
               {exceedingCount > 0 && (
@@ -293,6 +313,50 @@ export function InternalTeamDashboard() {
 
 
 
+              {/* Search and Filter Toolbar */}
+              <div className="dashboard-toolbar">
+                {/* Search Field */}
+                <input
+                  type="text"
+                  className="dashboard-search"
+                  placeholder="Search..."
+                  value={searchTerm}
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                    setPageIndex(0);
+                  }}
+                />
+
+                {/* Status Filter Chips - Textura Components */}
+                <div className="dashboard-filter-chips">
+                  {[
+                    { value: 'all', label: `All (${accounts.length})` },
+                    { value: 'exceeding', label: `Exceeding (${exceedingCount})` },
+                    { value: 'reaching', label: `Reaching (${reachingCount})` },
+                    { value: 'approaching', label: `Approaching (${approachingCount})` }
+                  ].map(tab => (
+                    <button
+                      key={tab.value}
+                      onClick={() => setSelectedTab(tab.value)}
+                      className="dashboard-chip-button"
+                    >
+                      <Chip
+                        type={selectedTab === tab.value ? 'solid' : 'subtle'}
+                        variant={selectedTab === tab.value ? 'info' : 'neutral'}
+                        size="md"
+                      >
+                        {selectedTab === tab.value && (
+                          <span style={{ display: 'flex', alignItems: 'center', gap: '4px', marginRight: '2px' }}>
+                            <Check style={{ width: '16px', height: '16px' }} />
+                          </span>
+                        )}
+                        {tab.label}
+                      </Chip>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               {/* Products List with Textura List Component */}
               <div className="list-container">
                 <List
@@ -321,161 +385,6 @@ export function InternalTeamDashboard() {
                   )}
                 </List>
               </div>
-
-              {/* Detail Panel */}
-              {selectedAccount && (
-                <div
-                  className="detail-panel-overlay"
-                  onClick={(e) => {
-                    if (e.target.className === 'detail-panel-overlay') {
-                      setSelectedAccountId(null);
-                    }
-                  }}
-                >
-                  <Card variant="elevated" spacing="roomy">
-                    <Card.Header>
-                      <div className="detail-header">
-                        <div>
-                          <h3 className="account-title">
-                            {selectedAccount.name}
-                          </h3>
-                          <div className="tenant-id">
-                            Tenant ID: {selectedAccount.tenantId}
-                          </div>
-                        </div>
-                        <div className="header-actions">
-                          <div className="action-buttons">
-                            <Button buttonType="primary" size="sm">Contact Customer</Button>
-                            <Button buttonType="secondary" size="sm">Go to Salesforce</Button>
-                            <Button buttonType="tertiary" size="sm">Create Follow-up Task</Button>
-                          </div>
-                          <IconButton
-                            buttonType="secondary"
-                            aria-label="Close"
-                            onClick={() => setSelectedAccountId(null)}
-                            className="modal-close-btn"
-                          >
-                            ✕
-                          </IconButton>
-                        </div>
-                      </div>
-                    </Card.Header>
-                    <Card.Divider />
-                    <Card.Content>
-                      {/* Recommended Actions Alert */}
-                      {(() => {
-                        const tiers = selectedAccount.products.map(p => getTierByPercent(getPercent(p)));
-                        const hasExceeding = tiers.includes('exceeding');
-                        const hasReaching = tiers.includes('reaching');
-
-                        return (
-                          <TexturaAlert
-                            variant={hasExceeding ? 'critical' : hasReaching ? 'warning' : 'info'}
-                            treatment="subtle"
-                            type="inline"
-                            className="alert-spacing"
-                            show={true}
-                          >
-                            <TexturaAlert.Icon />
-                            <TexturaAlert.Content>
-                              <TexturaAlert.Title>Recommended Actions</TexturaAlert.Title>
-                              <TexturaAlert.Description>
-                                {hasExceeding && 'URGENT: Reach out today to address overage situations. Customers may experience service disruptions. Discuss emergency upgrades or usage controls.'}
-                                {!hasExceeding && hasReaching && 'Contact the customer immediately to discuss usage patterns and explore upgrade options. Weekly check-ins recommended until action is taken.'}
-                                {!hasExceeding && !hasReaching && 'Schedule a quarterly business review to discuss growth trajectory and explore upgrade opportunities. This is an excellent time to understand their future roadmap.'}
-                              </TexturaAlert.Description>
-                            </TexturaAlert.Content>
-                          </TexturaAlert>
-                        );
-                      })()}
-
-                      <div className="detail-grid">
-                        {/* Left Column */}
-                        <div>
-                          <h4 className="section-title-uppercase">
-                            Account Details
-                          </h4>
-                          <div className="account-info-list">
-                            <div className="info-item">
-                              <div className="info-label">Account Manager</div>
-                              <div className="info-value">{selectedAccount.assignedAM}</div>
-                            </div>
-                            <div className="info-item">
-                              <div className="info-label">Region</div>
-                              <div className="info-value">{selectedAccount.region}</div>
-                            </div>
-                            <div className="info-item">
-                              <div className="info-label">Last Contacted</div>
-                              <div className="info-value">{selectedAccount.lastContacted || 'Never'}</div>
-                            </div>
-                            <div className="info-item">
-                              <div className="info-label">Contract End</div>
-                              <div className="info-value">{selectedAccount.contractEnd} ({getDaysToRenewal(selectedAccount)}d)</div>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Right Column */}
-                        <div>
-                          <h4 className="section-title-uppercase">
-                            Product Summary
-                          </h4>
-                          <div className="account-info-list">
-                            <div className="info-item">
-                              <div className="info-label">Total Products</div>
-                              <div className="info-value">{selectedAccount.products.length} monitored</div>
-                            </div>
-                            <div className="info-item">
-                              <div className="info-label">Critical Status</div>
-                              <div className="info-value">
-                                {selectedAccount.products.filter(p => p.tier !== 'approaching').length} at risk
-                              </div>
-                            </div>
-                            <div className="info-item">
-                              <div className="info-label">Max Usage</div>
-                              <div className="info-value">
-                                {Math.round(Math.max(...selectedAccount.products.map(p => getPercent(p))))}% across products
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Products Grid */}
-                      <div className="products-grid-section">
-                        <h4 className="section-title-uppercase">
-                          All Products
-                        </h4>
-                        <div className="products-grid">
-                          {selectedAccount.products.map((product, idx) => {
-                            const calculatedTier = getTierByPercent(getPercent(product));
-                            return (
-                            <div key={idx} className="product-card">
-                              <div className="product-card-header">
-                                <div className="product-card-name">
-                                  {product.name}
-                                </div>
-                                {calculatedTier && (
-                                  <Chip type="subtle" variant={tierColors[calculatedTier]} size="sm">
-                                    {getStatusLabel(calculatedTier)}
-                                  </Chip>
-                                )}
-                              </div>
-                              <BarProgress value={Math.min(getPercent(product), 100)} max={100} />
-                              <div className="product-card-stats">
-                                <span className="product-card-usage">{product.usage} / {product.limit}</span>
-                                <span className="product-card-percent">{getPercent(product)}%</span>
-                              </div>
-                            </div>
-                          );
-                          })}
-                        </div>
-                      </div>
-
-                    </Card.Content>
-                  </Card>
-                </div>
-              )}
             </div>
           </PageLayout.BodyContent>
         </PageLayout.Body>

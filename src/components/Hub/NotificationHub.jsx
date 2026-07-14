@@ -33,7 +33,7 @@ export function NotificationHub() {
             <span>•</span>
           </div>
           <div className="metadata-item">
-            <span>Last updated: July 1, 2026</span>
+            <span>Last updated: July 9, 2026</span>
           </div>
           <div className="metadata-item">
             <span>•</span>
@@ -92,7 +92,7 @@ export function NotificationHub() {
                 </a>
                 <span className="status-badge in-progress">In Progress</span>
               </div>
-              <div className="dashboard-link">
+              <div className="dashboard-link dashboard-link-customer">
                 <a href="#/dashboard/customer" target="_blank" rel="noopener noreferrer" className="link-text">
                   Customer Dashboard
                 </a>

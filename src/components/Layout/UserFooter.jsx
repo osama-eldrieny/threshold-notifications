@@ -39,7 +39,7 @@ export function UserFooter({ userType = 'admin', onUserTypeChange }) {
             </Avatar>
           </MainNav.UserAvatar>
           <MainNav.UserNotifications>
-            <Badge variant="critical">{userMenuItems[1].badge}</Badge>
+            <Badge spacing="roomy" variant="critical">{userMenuItems[1].badge}</Badge>
           </MainNav.UserNotifications>
           {user.name}
           <MainNav.Indicator />
@@ -56,7 +56,7 @@ export function UserFooter({ userType = 'admin', onUserTypeChange }) {
           <MainNav.Item key={index}>
             {item.label}
             {item.badge && (
-              <Badge style={{ marginInlineStart: 'auto' }}>{item.badge}</Badge>
+              <Badge spacing="roomy" style={{ marginInlineStart: 'auto' }}>{item.badge}</Badge>
             )}
           </MainNav.Item>
         ))}

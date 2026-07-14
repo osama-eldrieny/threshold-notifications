@@ -45,7 +45,28 @@
       "Bash(git commit *)",
       "Bash(git push *)",
       "Bash(read id *)",
-      "Bash(netlify unlink *)"
+      "Bash(netlify unlink *)",
+      "Bash(figma list-open-files *)",
+      "mcp__figma-console__figma_list_open_files",
+      "mcp__figma-console__figma_get_selection",
+      "Bash(jobs *)",
+      "Bash(grep -v \"^./src/components/TexturaList.jsx$\\\\|^./src/components/SideNavigation.jsx$\\\\|^./src/components/HomePage.jsx$\\\\|^./src/components/WorkflowPage.jsx$\")",
+      "Bash(node -c /Users/osamaeldrieny/Sandbox/my-first-project/src/components/Dashboard/InternalTeamDashboard.jsx)",
+      "Bash(pkill -9 node)",
+      "Bash(pkill -9 vite)",
+      "Bash(npm install *)",
+      "Bash(npx -y @exp-textura/mcp-server --help)",
+      "Bash(sed -i 's/<Badge style={{ marginInlineStart:/<Badge spacing=\"roomy\" style={{ marginInlineStart:/g' /Users/osamaeldrieny/Sandbox/my-first-project/src/pages/ApproachingAdminHome.jsx)",
+      "Bash(sed -i 's/<Badge style={{ marginInlineStart:/<Badge spacing=\"roomy\" style={{ marginInlineStart:/g' /Users/osamaeldrieny/Sandbox/my-first-project/src/pages/ExceedingAdminHome.jsx)",
+      "Bash(grep -E \"\\\\.\\(jsx|js\\)$\")",
+      "Bash(gh auth *)",
+      "Bash(gh repo *)",
+      "Bash(git remote *)",
+      "Bash(ssh-add -l)",
+      "Bash(git config *)",
+      "Bash(npx tsc *)",
+      "Bash(node *)",
+      "Bash(pkill -f \"npm run dev\")"
     ]
   }
 }

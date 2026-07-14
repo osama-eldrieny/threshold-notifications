@@ -5,7 +5,7 @@ import nintexIcon from '../../../imgs/nintex.png';
 
 export function NotificationCard({ tier, userType, userLabel, channels }) {
   return (
-    <div className="notification-card">
+    <div className="notification-card" data-user-type={userType}>
       <div className="card-header">
         <h3>{userLabel}</h3>
         <span className="status-badge done">Done</span>

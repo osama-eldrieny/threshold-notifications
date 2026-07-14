@@ -9,6 +9,7 @@ import { NotificationsPage } from './components/Notifications/NotificationsPage'
 import { NotificationHub } from './components/Hub/NotificationHub';
 import { InternalTeamDashboard } from './components/Dashboard/InternalTeamDashboard';
 import { CustomerDashboard } from './components/Dashboard/CustomerDashboard';
+import { AccountDetailPage } from './components/Dashboard/AccountDetailPage';
 import './styles/App.css';
 
 function App() {
@@ -55,6 +56,16 @@ function App() {
   // Check if this is the internal team dashboard (for all internal users)
   if (state.page === 'dashboardTeam') {
     return <InternalTeamDashboard />;
+  }
+
+  // Check if this is an account detail page
+  if (state.page === 'accountDetail') {
+    return (
+      <AccountDetailPage
+        accountId={state.accountId}
+        onBack={() => window.location.hash = '#/dashboard/team'}
+      />
+    );
   }
 
   // Check if this is the customer dashboard (for admin/editor)
@@ -140,6 +151,10 @@ function parseRoute() {
   // Check if this is a dashboard route
   if (parts[0] === 'dashboard') {
     if (parts[1] === 'team') {
+      // Check if this is an account detail page
+      if (parts[2] === 'account' && parts[3]) {
+        return { tier, userType, page: 'accountDetail', accountId: parts[3] };
+      }
       page = 'dashboardTeam';
       return { tier, userType, page };
     }

@@ -3,6 +3,7 @@ import {
   Card, Button, Alert as TexturaAlert, Chip, Avatar, BarProgress,
   Header, TabBar, Tab, List
 } from '@exp-textura/react';
+import { Calendar } from '@exp-textura/icons/streamline-sl';
 import { accounts, getPercent, getDaysToRenewal, getStatusLabel, getAccountHighestTier, getTierByPercent } from '../../data/dashboard/accountsData';
 
 const tierColors = {
@@ -24,15 +25,18 @@ export function CustomerDashboard({ userType = 'admin' }) {
   }
 
   // Calculate summary stats
-  const criticalProducts = account.products.filter(p => p.tier === 'exceeding');
-  const urgentProducts = account.products.filter(p => p.tier === 'reaching');
-  const monitorProducts = account.products.filter(p => p.tier === 'approaching');
-  const highestTier = getAccountHighestTier(account);
-
-  // Calculate overall usage
   const totalUsage = account.products.reduce((sum, p) => sum + p.usage, 0);
   const totalLimit = account.products.reduce((sum, p) => sum + p.limit, 0);
   const overallPercent = Math.round((totalUsage / totalLimit) * 100);
+  const overallTier = getTierByPercent(overallPercent);
+
+  // Count products by their calculated tier (based on percentage)
+  const criticalProducts = account.products.filter(p => getTierByPercent(getPercent(p)) === 'exceeding');
+  const urgentProducts = account.products.filter(p => getTierByPercent(getPercent(p)) === 'reaching');
+  const monitorProducts = account.products.filter(p => getTierByPercent(getPercent(p)) === 'approaching');
+
+  // Determine highest tier from products
+  const highestTier = criticalProducts.length > 0 ? 'exceeding' : urgentProducts.length > 0 ? 'reaching' : monitorProducts.length > 0 ? 'approaching' : null;
 
   const columns = [
     {
@@ -104,30 +108,21 @@ export function CustomerDashboard({ userType = 'admin' }) {
   if (userType === 'admin') {
     return (
       <div className="customer-dashboard">
-        {/* Page Heading */}
-        <h1 style={{ fontSize: '24px', fontWeight: '700', marginBottom: '8px' }}>
-          Product Usage Dashboard
-        </h1>
-        <p style={{ fontSize: '14px', color: 'var(--ntx-color-neutral-500)', marginBottom: '24px' }}>
-          Monitor all 7 products and manage resource allocation across your organization
-        </p>
-
-        {/* Header with Tabs */}
-        <Header>
-          <Header.Main>
-            <Header.Content>
-              <Header.Title>Product Usage Dashboard</Header.Title>
-              <Header.Description>
-                Monitor all 7 products and manage resource allocation across your organization
-              </Header.Description>
-            </Header.Content>
-          </Header.Main>
-          <TabBar value={activeTab} onChange={setActiveTab}>
-            <Tab value="overview" label="Overview & Summary" />
-            <Tab value="products" label="Product Details" />
-            <Tab value="account" label="Account Info" />
-          </TabBar>
-        </Header>
+        {/* Page Heading with CTA */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px', gap: '24px' }}>
+          <div>
+            <h1 style={{ fontSize: '24px', fontWeight: '700', marginBottom: '8px' }}>
+              Product Usage Dashboard
+            </h1>
+            <p style={{ fontSize: '14px', color: 'var(--ntx-color-neutral-500)', margin: '0' }}>
+              Monitor all 7 products and manage resource allocation across your organization
+            </p>
+          </div>
+          <Button buttonType="primary" size="sm" style={{ display: 'flex', gap: '8px', alignItems: 'center', whiteSpace: 'nowrap', flexShrink: 0 }}>
+            <Calendar style={{ width: '16px', height: '16px' }} />
+            Schedule Review
+          </Button>
+        </div>
 
         {/* Critical Alert */}
         {criticalProducts.length > 0 && (
@@ -171,13 +166,17 @@ export function CustomerDashboard({ userType = 'admin' }) {
         )}
 
         {/* Tabs */}
-        <TabBar value={activeTab} onValueChange={setActiveTab} className="tabs-spacing">
-          <TabBar.List>
-            <Tab value="overview">Overview & Summary</Tab>
-            <Tab value="products">Product Details</Tab>
-            <Tab value="account">Account Info</Tab>
-          </TabBar.List>
-        </TabBar>
+        <div style={{ display: 'flex', gap: '32px', marginBottom: '32px', borderBottom: '1px solid var(--ntx-color-neutral-200)', paddingBottom: '0' }}>
+          <button onClick={() => setActiveTab('overview')} style={{ background: 'none', border: 'none', padding: '12px 0', cursor: 'pointer', fontSize: 'var(--ntx-font-size-base)', fontWeight: activeTab === 'overview' ? '600' : '500', color: activeTab === 'overview' ? 'var(--ntx-color-neutral-1000)' : 'var(--ntx-color-neutral-500)', borderBottom: activeTab === 'overview' ? '2px solid var(--ntx-color-neutral-1000)' : 'none', transition: 'all var(--ntx-transition-normal)' }}>
+            Overview & Summary
+          </button>
+          <button onClick={() => setActiveTab('products')} style={{ background: 'none', border: 'none', padding: '12px 0', cursor: 'pointer', fontSize: 'var(--ntx-font-size-base)', fontWeight: activeTab === 'products' ? '600' : '500', color: activeTab === 'products' ? 'var(--ntx-color-neutral-1000)' : 'var(--ntx-color-neutral-500)', borderBottom: activeTab === 'products' ? '2px solid var(--ntx-color-neutral-1000)' : 'none', transition: 'all var(--ntx-transition-normal)' }}>
+            Product Details
+          </button>
+          <button onClick={() => setActiveTab('account')} style={{ background: 'none', border: 'none', padding: '12px 0', cursor: 'pointer', fontSize: 'var(--ntx-font-size-base)', fontWeight: activeTab === 'account' ? '600' : '500', color: activeTab === 'account' ? 'var(--ntx-color-neutral-1000)' : 'var(--ntx-color-neutral-500)', borderBottom: activeTab === 'account' ? '2px solid var(--ntx-color-neutral-1000)' : 'none', transition: 'all var(--ntx-transition-normal)' }}>
+            Account Info
+          </button>
+        </div>
 
         {/* Overview Tab */}
         {activeTab === 'overview' && (
@@ -215,6 +214,23 @@ export function CustomerDashboard({ userType = 'admin' }) {
                   </p>
                 </Card.Content>
               </Card>
+
+              <Card variant="elevated" spacing="roomy">
+                <Card.Content>
+                  <p style={{ fontSize: '11px', fontWeight: '600', color: 'var(--ntx-color-neutral-500)', textTransform: 'uppercase', letterSpacing: '0.5px', margin: '0 0 8px 0' }}>
+                    Overall Health
+                  </p>
+                  <Chip type="subtle" variant={tierColors[overallTier]} size="sm" style={{ marginBottom: '12px' }}>
+                    {getStatusLabel(overallTier)}
+                  </Chip>
+                  <p style={{ fontSize: '12px', color: 'var(--ntx-color-neutral-500)', margin: '0' }}>
+                    {overallTier === 'exceeding' && 'One or more products exceeding limits. Immediate action required.'}
+                    {overallTier === 'reaching' && 'Critical usage levels. Contact your account team.'}
+                    {overallTier === 'approaching' && 'Making great use of Nintex products. Good time to discuss future needs.'}
+                    {!overallTier && 'Healthy product usage levels.'}
+                  </p>
+                </Card.Content>
+              </Card>
             </div>
 
             {/* Product Status Summary */}
@@ -244,24 +260,6 @@ export function CustomerDashboard({ userType = 'admin' }) {
               </Card>
             </div>
 
-            {/* Overall Health */}
-            <Card variant="elevated" spacing="roomy">
-              <Card.Header>
-                <h3 className="card-title">Overall Health Status</h3>
-              </Card.Header>
-              <Card.Content>
-                <div className="health-container">
-                  <Chip type="subtle" variant={tierColors[highestTier]} size="sm">
-                    {getStatusLabel(highestTier)}
-                  </Chip>
-                  <div className="health-description">
-                    {highestTier === 'exceeding' && 'Your organization has one or more products exceeding their allocated limits. Immediate action is required.'}
-                    {highestTier === 'reaching' && 'Your organization is at critical usage levels on one or more products. Contact your account team to discuss options.'}
-                    {highestTier === 'approaching' && 'Your organization is making great use of Nintex products. This is a good time to discuss future needs with your account team.'}
-                  </div>
-                </div>
-              </Card.Content>
-            </Card>
           </>
         )}
 
@@ -369,12 +367,6 @@ export function CustomerDashboard({ userType = 'admin' }) {
           </div>
         )}
 
-        {/* Footer CTA */}
-        <div className="footer-cta">
-          <Button buttonType="primary" className="full-width">
-            📞 Schedule Review with Account Team
-          </Button>
-        </div>
       </div>
     );
   }
