@@ -81,10 +81,10 @@ export function getAvailableUserTypes(tier) {
 }
 
 export const userTypeLabels = {
-  admin: 'Admin',
+  admin: 'Customer Admin',
   accountOwner: 'Account Owner',
   customerSuccess: 'Customer Success',
   accountManager: 'Account Manager',
   csm: 'CSM',
-  editor: 'Editor'
+  editor: 'Customer Editor'
 };
