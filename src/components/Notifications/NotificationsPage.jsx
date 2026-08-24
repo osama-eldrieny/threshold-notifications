@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PageLayout } from '@exp-textura/react';
 import { parseNotificationRoute, buildNotificationRoute } from '../../utils/notificationRouteParser';
-import { getNotificationContent, getAvailableChannels } from '../../data/notifications/contentResolver';
+import { getNotificationContent, getAvailableChannels, userTypeLabels } from '../../data/notifications/contentResolver';
 import { NotificationSidebar } from './Shared/NotificationSidebar';
 import { EmailTemplate } from './Email/EmailTemplate';
 import { SlackTemplate } from './Slack/SlackTemplate';
@@ -53,7 +53,7 @@ export function NotificationsPage() {
                 <h1>Notification Preview</h1>
                 <p className="breadcrumb">
                   {state.tier.charAt(0).toUpperCase() + state.tier.slice(1)} ·
-                  {state.userType.charAt(0).toUpperCase() + state.userType.slice(1)}
+                  {userTypeLabels[state.userType]}
                 </p>
               </div>
 

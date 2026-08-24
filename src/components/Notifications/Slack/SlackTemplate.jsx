@@ -6,7 +6,7 @@ export function SlackTemplate({ content }) {
 
   // Highlight specific words in the title and body
   function renderHighlightedTitle(title) {
-    const keywords = ['ACME Corp', 'Approaching', 'Reaching', 'Exceeding', 'URGENT', 'CRITICAL', 'Workflow Instances', 'Limit'];
+    const keywords = ['ACME Corp', 'Approaching', 'Reaching', 'Exceeding', 'URGENT', 'CRITICAL', 'nc_workflow_instances', 'Limit'];
     const parts = title.split(new RegExp(`(${keywords.join('|')})`, 'g'));
     return parts.map((part, i) =>
       keywords.includes(part)
@@ -29,6 +29,7 @@ export function SlackTemplate({ content }) {
   function highlightDynamicValues(text) {
     const patterns = [
       { regex: /Acme Corp/g },
+      { regex: /nc_workflow_instances/g },
       { regex: /Workflow Instances/g },
       { regex: /APPROACHING|REACHING|EXCEEDING/g },
       { regex: /\d+%/g },
@@ -77,14 +78,14 @@ export function SlackTemplate({ content }) {
             </div>
           </div>
           <div className="slack-channel-label">Channels</div>
-          <div className="slack-channel active"># nintex-team</div>
+          <div className="slack-channel active"># alerts-apac</div>
           <div className="slack-channel"># cs-team</div>
         </div>
 
         <div className="slack-main">
           <div className="slack-channel-header">
             <span className="channel-header-icon">★</span>
-            <span className="channel-header-name">Nintex team</span>
+            <span className="channel-header-name">alerts-apac</span>
           </div>
 
           <div className="slack-messages">
@@ -113,8 +114,12 @@ export function SlackTemplate({ content }) {
 
                   <div className="slack-ctas">
                     <a href="#" className="slack-link">{content.cta1}</a>
-                    <span className="slack-link-separator"> - </span>
-                    <a href="#" className="slack-link">{content.cta2}</a>
+                    {content.cta2 && (
+                      <>
+                        <span className="slack-link-separator"> - </span>
+                        <a href="#" className="slack-link">{content.cta2}</a>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

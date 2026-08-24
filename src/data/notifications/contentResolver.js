@@ -39,21 +39,6 @@ export const availabilityMatrix = {
     reaching: ['email', 'slack'],
     exceeding: ['email', 'slack']
   },
-  customerSuccess: {
-    approaching: ['email', 'slack'],
-    reaching: ['email', 'slack'],
-    exceeding: ['email', 'slack']
-  },
-  accountManager: {
-    approaching: [],
-    reaching: ['email'],
-    exceeding: ['email']
-  },
-  csm: {
-    approaching: [],
-    reaching: ['email'],
-    exceeding: ['email']
-  },
   admin: {
     approaching: ['email'],
     reaching: ['email'],
@@ -82,9 +67,6 @@ export function getAvailableUserTypes(tier) {
 
 export const userTypeLabels = {
   admin: 'Customer Admin',
-  accountOwner: 'Account Owner',
-  customerSuccess: 'Customer Success',
-  accountManager: 'Account Manager',
-  csm: 'CSM',
+  accountOwner: 'Internal team',
   editor: 'Customer Editor'
 };

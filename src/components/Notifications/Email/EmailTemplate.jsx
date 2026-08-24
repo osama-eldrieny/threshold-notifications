@@ -44,9 +44,11 @@ export function EmailTemplate({ content }) {
                     <Button buttonType="primary" size="md" onClick={(e) => e.preventDefault()}>
                       {content.cta1}
                     </Button>
-                    <Button buttonType="secondary" size="md" onClick={(e) => e.preventDefault()}>
-                      {content.cta2}
-                    </Button>
+                    {content.cta2 && (
+                      <Button buttonType="secondary" size="md" onClick={(e) => e.preventDefault()}>
+                        {content.cta2}
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>
