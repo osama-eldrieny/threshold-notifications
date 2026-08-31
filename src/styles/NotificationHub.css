@@ -44,6 +44,26 @@
   gap: 8px;
 }
 
+.whats-new-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #93c5fd !important;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.whats-new-link:hover {
+  color: white !important;
+  text-decoration: underline;
+}
+
+.whats-new-link svg {
+  width: 14px;
+  height: 14px;
+}
+
 .avatars-container {
   display: flex;
   gap: -4px;

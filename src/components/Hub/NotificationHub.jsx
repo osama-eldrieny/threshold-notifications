@@ -27,13 +27,13 @@ export function NotificationHub() {
         <p className="hub-subtitle">Explore email, Slack, and in-app notifications across all alert tiers. View the Figma design file, research board, and prototype below.</p>
         <div className="hub-metadata">
           <div className="metadata-item">
-            <span>V1.0 Draft</span>
+            <span>V1.0 In Review</span>
           </div>
           <div className="metadata-item">
             <span>•</span>
           </div>
           <div className="metadata-item">
-            <span>Last updated: July 9, 2026</span>
+            <span>Last updated: August 31, 2026</span>
           </div>
           <div className="metadata-item">
             <span>•</span>
@@ -44,6 +44,15 @@ export function NotificationHub() {
               <img src={osamaAvatar} alt="Osama" className="contributor-avatar" title="Osama" />
               <img src={tifanyAvatar} alt="Tifany" className="contributor-avatar" title="Tifany" />
             </div>
+          </div>
+          <div className="metadata-item">
+            <span>•</span>
+          </div>
+          <div className="metadata-item">
+            <a href="#/whatsnew" className="whats-new-link" target="_blank" rel="noopener noreferrer">
+              <LucideIcon name="sparkles" />
+              What's New in V1
+            </a>
           </div>
         </div>
       </div>

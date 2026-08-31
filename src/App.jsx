@@ -7,6 +7,7 @@ import { HomePageContent } from './components/Home/HomePageContent';
 import { WorkflowPageContent } from './components/Workflow/WorkflowPageContent';
 import { NotificationsPage } from './components/Notifications/NotificationsPage';
 import { NotificationHub } from './components/Hub/NotificationHub';
+import { WhatsNewPage } from './components/Hub/WhatsNewPage';
 import { InternalTeamDashboard } from './components/Dashboard/InternalTeamDashboard';
 import { CustomerDashboard } from './components/Dashboard/CustomerDashboard';
 import { AccountDetailPage } from './components/Dashboard/AccountDetailPage';
@@ -51,6 +52,11 @@ function App() {
   // Check if this is the hub page
   if (state.page === 'hub') {
     return <NotificationHub />;
+  }
+
+  // Check if this is the what's new page
+  if (state.page === 'whatsNew') {
+    return <WhatsNewPage />;
   }
 
   // Check if this is the internal team dashboard (for all internal users)
@@ -168,6 +174,12 @@ function parseRoute() {
   if (parts[0] === 'notifications') {
     page = 'notifications';
     // Notifications routing is handled by NotificationsPage component
+    return { tier, userType, page };
+  }
+
+  // Check if this is the what's new route
+  if (parts[0] === 'whatsnew') {
+    page = 'whatsNew';
     return { tier, userType, page };
   }
 
