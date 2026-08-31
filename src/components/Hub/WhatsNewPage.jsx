@@ -128,7 +128,7 @@ const contentTags = [
 const updates = [
   {
     title: 'Regional team grouping',
-    description: 'Internal team roles (account manager, account owner, customer success, and customer success manager) are combined into a single regional group — e.g. Team APAC — so everyone receives the same email and Slack channel notifications.'
+    description: 'Internal team roles (<strong>account manager, account owner, customer success, and customer success manager</strong>) are combined into a single regional group — e.g. <strong>Team APAC</strong> — so everyone receives the same email and Slack channel notifications.'
   },
   {
     title: 'Bullet-point message structure',
@@ -136,11 +136,11 @@ const updates = [
   },
   {
     title: 'Contract ID field',
-    description: 'A Contract ID line was added to notification bodies to make it easier to look up the underlying agreement.'
+    description: 'A "<strong>Contract ID</strong>" line was added to notification bodies to make it easier to look up the underlying agreement.'
   },
   {
     title: '"Subscription End" labeling',
-    description: 'Renamed "Contract End" to "Subscription End" throughout notification content for clarity.'
+    description: 'Renamed <strong>"Contract End"</strong> to <strong>"Subscription End"</strong> throughout notification content for clarity.'
   },
   {
     title: 'Slack message styling refinements',
@@ -148,11 +148,11 @@ const updates = [
   },
   {
     title: 'Dashboard button hidden for phase 1',
-    description: 'The View dashboard button is hidden from internal team notifications for the first phase — it can be added back in phase 2.'
+    description: 'The "<strong>View dashboard</strong>" button is hidden from internal team notifications for the first phase — it can be added back in phase 2.'
   },
   {
     title: 'Entitlement ID full label',
-    description: 'Product name now displays the full entitlement label — e.g. "Nintex Workflow" instead of "nc_workflow_instances".'
+    description: 'Product name now displays the full entitlement label — e.g. "<strong>nc_workflow_instances</strong>" instead of "<strong>Nintex Workflow</strong>".'
   },
   {
     title: 'Region-based Slack notifications',
@@ -160,15 +160,15 @@ const updates = [
   },
   {
     title: 'Updated internal team greeting',
-    description: 'Internal team notification greeting changed from "Hi Account Owner" to "Hi Team".'
+    description: 'Internal team notification greeting changed from "<strong>Hi Account Owner</strong>" to "<strong>Hi Team</strong>".'
   },
   {
     title: 'Simplified usage wording',
-    description: 'Removed the word "Instances" from usage text throughout notifications.'
+    description: 'Removed the word "<strong>Instances</strong>" from usage text throughout notifications.'
   },
   {
     title: 'Removed Current Credits line',
-    description: 'Removed the Current Credits line from notification message content.'
+    description: 'Removed the <strong>Current Credits</strong> line from notification message content.'
   }
 ];
 
@@ -193,7 +193,7 @@ export function WhatsNewPage() {
               </div>
               <div className="whats-new-item-body">
                 <h3>{update.title}</h3>
-                <p>{update.description}</p>
+                <p dangerouslySetInnerHTML={{ __html: update.description }} />
               </div>
             </li>
           ))}
