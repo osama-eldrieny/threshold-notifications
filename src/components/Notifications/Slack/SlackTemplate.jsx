@@ -1,12 +1,13 @@
 import React from 'react';
 import '../../../styles/SlackTemplate.css';
 
-export function SlackTemplate({ content }) {
+export function SlackTemplate({ content, disableHighlight = false }) {
   if (!content) return null;
 
   // Highlight specific words in the title and body
   function renderHighlightedTitle(title) {
-    const keywords = ['ACME Corp', 'Approaching', 'Reaching', 'Exceeding', 'URGENT', 'CRITICAL', 'nc_workflow_instances', 'Limit'];
+    if (disableHighlight) return title;
+    const keywords = ['ACME Corp', 'Approaching', 'Reaching', 'Exceeding', 'URGENT', 'CRITICAL', 'nc_workflow_instances'];
     const parts = title.split(new RegExp(`(${keywords.join('|')})`, 'g'));
     return parts.map((part, i) =>
       keywords.includes(part)
@@ -19,7 +20,7 @@ export function SlackTemplate({ content }) {
     // First split by newlines and add br tags
     const lines = body.split('\n').map((line, i) => (
       <React.Fragment key={i}>
-        {highlightDynamicValues(line)}
+        {disableHighlight ? line : highlightDynamicValues(line)}
         {i < body.split('\n').length - 1 && <br />}
       </React.Fragment>
     ));

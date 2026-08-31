@@ -4,7 +4,7 @@ export const approachingContent = {
       subject: 'Acme Corp Usage Update - 80% Capacity',
       title: 'ACME Corp Approaching nc_workflow_instances Limit',
       greeting: 'Hello Sarah,',
-      body: 'We wanted to keep you informed about your Nintex usage:\n\nCustomer Account:  Acme Corp\nProduct:           nc_workflow_instances\nStatus:            APPROACHING LIMIT (80% utilized)\nCurrent Usage:     800 / 1000\nContract End:      December 31, 2026\n\nYou\'re using 80% of your annual allocation. Your account team is here to help you discuss options for your future needs.\n\nQuestions? Reach out to your account manager anytime.\nBest regards,\nNintex',
+      body: 'We wanted to keep you informed about your Nintex usage:\n\n• Customer Account: ACME Corp\n• Contract ID: 800GC000001OhM6\n• Product: nc_workflow_instances\n• Status: Approaching (70% of limit)\n• Current Usage: 17500.0 / 25000.0\n• Subscription End: December 31 2026\n\nYou\'re using 70% of your annual allocation. Your account team is here to help you discuss options for your future needs.\n\nReach out to your account manager anytime.\n\nBest regards,\nNintex',
       yourMove: '',
       cta1: 'Contact AM',
       cta2: 'View dashboard'
@@ -15,15 +15,15 @@ export const approachingContent = {
       subject: 'Usage Alert: Acme Corp - Approaching Limit',
       title: 'ACME Corp Approaching nc_workflow_instances Limit',
       greeting: 'Hi Team,',
-      body: 'Customer:          Acme Corp\nProduct:           nc_workflow_instances\nStatus:            APPROACHING (80% of limit)\nCurrent Usage:     800 / 1000\nContract End:      December 31, 2026\n\nYour customer is using 80% of their annual allocation. This is a great time to discuss their growth roadmap and explore upgrade options.',
+      body: '• Customer Account: ACME Corp\n• Contract ID: 800GC000001OhM6\n• Product: nc_workflow_instances\n• Status: Approaching (70% of limit)\n• Current Usage: 17500.0 / 25000.0\n• Subscription End: December 31 2026\n\nYour customer is using 70% of their annual allocation. This is a great time to discuss their growth roadmap and explore upgrade options.',
       yourMove: '',
       cta1: 'Go to account',
       cta2: ''
     },
     slack: {
-      title: 'Acme Corp Approaching nc_workflow_instances Limit',
+      title: 'ACME Corp Approaching nc_workflow_instances Limit',
       greeting: 'Hi Team,',
-      body: 'Customer Account:  Acme Corp\nProduct:           nc_workflow_instances\nStatus:            APPROACHING (80% of limit)\nCurrent Usage:     800 / 1000\nContract End:      December 31, 2026\n\nYour customer is using 80% of their annual allocation. This is a great time to discuss their growth roadmap and explore upgrade options.',
+      body: '• Customer Account: ACME Corp\n• Contract ID: 800GC000001OhM6\n• Product: nc_workflow_instances\n• Status: Approaching (70% of limit)\n• Current Usage: 17500.0 / 25000.0\n• Subscription End: December 31 2026\n\nYour customer is using 70% of their annual allocation. This is a great time to discuss their growth roadmap and explore upgrade options.',
       yourMove: '',
       cta1: 'Go to account',
       cta2: ''
@@ -34,7 +34,7 @@ export const approachingContent = {
       subject: 'Usage Alert: Acme Corp - Approaching Limit',
       title: 'ACME Corp Approaching nc_workflow_instances Limit',
       greeting: 'Hi Customer Success Team,',
-      body: 'Customer:          Acme Corp\nProduct:           nc_workflow_instances\nStatus:            APPROACHING (80% of limit)\nCurrent Usage:     800 / 1000\nContract End:      December 31, 2026\nCurrent Credits:   800 / 1000\n\nYour customer is using 80% of their annual allocation. This is a great time to discuss their growth roadmap and explore upgrade options.',
+      body: 'Customer:          Acme Corp\nProduct:           nc_workflow_instances\nStatus:            APPROACHING (80% of limit)\nCurrent Usage:     800 / 1000\nSubscription end date: December 31, 2026\nCurrent Credits:   800 / 1000\n\nYour customer is using 80% of their annual allocation. This is a great time to discuss their growth roadmap and explore upgrade options.',
       yourMove: '',
       cta1: 'Go to account',
       cta2: 'View dashboard'
@@ -42,7 +42,7 @@ export const approachingContent = {
     slack: {
       title: 'Acme Corp Approaching nc_workflow_instances Limit',
       greeting: 'Hi Customer Success Team,',
-      body: 'Customer Account:  Acme Corp\nProduct:           nc_workflow_instances\nStatus:            APPROACHING (80% of limit)\nCurrent Usage:     800 / 1000\nContract End:      December 31, 2026\nCurrent Credits:   800 / 1000\n\nYour customer is using 80% of their annual allocation. This is a great time to discuss their growth roadmap and explore upgrade options.',
+      body: 'Customer Account:  Acme Corp\nProduct:           nc_workflow_instances\nStatus:            APPROACHING (80% of limit)\nCurrent Usage:     800 / 1000\nSubscription end date: December 31, 2026\nCurrent Credits:   800 / 1000\n\nYour customer is using 80% of their annual allocation. This is a great time to discuss their growth roadmap and explore upgrade options.',
       yourMove: '',
       cta1: 'Go to account',
       cta2: 'View dashboard'

@@ -71,7 +71,7 @@ export function NotificationsPage() {
                     {slackContent && (
                       <div className="preview-item">
                         <div className="preview-title">Slack Notification</div>
-                        <SlackTemplate content={slackContent} />
+                        <SlackTemplate content={slackContent} disableHighlight={state.userType === 'accountOwner'} />
                       </div>
                     )}
                   </div>

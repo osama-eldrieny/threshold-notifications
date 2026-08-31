@@ -151,9 +151,9 @@
 .bot-badge {
   font-size: 10px;
   font-weight: 700;
-  background: #e8f5e9;
-  color: #1b5e20;
-  padding: 2px 6px;
+  background: #e0e0e0;
+  color: #424242;
+  padding: 0px 6px;
   border-radius: 2px;
   text-transform: uppercase;
 }
@@ -173,7 +173,7 @@
 
 .slack-message-title {
   margin: 0 0 12px 0;
-  font-weight: 500;
+  font-weight: bold;
 }
 
 .slack-message-greeting {
