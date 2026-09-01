@@ -100,19 +100,19 @@ const thresholdStatuses = [
 ];
 
 const products = [
-  { entitlementLabel: 'workflow_document_generations', fullLabel: 'nc_workflow_document_generations' },
-  { entitlementLabel: 'app_user_sessions', fullLabel: 'nc_app_user_sessions' },
-  { entitlementLabel: 'app_count', fullLabel: 'nc_app_count' },
-  { entitlementLabel: 'workflow_instances', fullLabel: 'nc_workflow_instances' },
-  { entitlementLabel: 'workflow_count', fullLabel: 'nc_workflow_count' },
-  { entitlementLabel: 'non_production_tenants', fullLabel: 'nc_non_production_tenants' },
-  { entitlementLabel: 'production_tenants', fullLabel: 'nc_production_tenants' },
-  { entitlementLabel: 'datastore_rows', fullLabel: 'nc_datastore_rows' },
-  { entitlementLabel: 'envelopes', fullLabel: 'esign_envelopes' },
-  { entitlementLabel: 'anonymous_users', fullLabel: 'nc_anonymous_users' },
-  { entitlementLabel: 'docgen_document_generations', fullLabel: 'nc_docgen_document_generations' },
-  { entitlementLabel: 'workflow_gateway', fullLabel: 'nc_workflow_gateway' },
-  { entitlementLabel: 'ai_runtime_credits', fullLabel: 'nc_ai_runtime_credits' }
+  { entitlementLabel: 'app_user_sessions', fullLabel: 'nc_app_user_sessions', phase: 'Phase 1' },
+  { entitlementLabel: 'workflow_instances', fullLabel: 'nc_workflow_instances', phase: 'Phase 1' },
+  { entitlementLabel: 'datastore_rows', fullLabel: 'nc_datastore_rows', phase: 'Phase 1' },
+  { entitlementLabel: 'ai_runtime_credits', fullLabel: 'nc_ai_runtime_credits', phase: 'Phase 1' },
+  { entitlementLabel: 'workflow_document_generations', fullLabel: 'nc_workflow_document_generations', phase: 'Phase 2' },
+  { entitlementLabel: 'app_count', fullLabel: 'nc_app_count', phase: 'Phase 2' },
+  { entitlementLabel: 'workflow_count', fullLabel: 'nc_workflow_count', phase: 'Phase 2' },
+  { entitlementLabel: 'non_production_tenants', fullLabel: 'nc_non_production_tenants', phase: 'Phase 2' },
+  { entitlementLabel: 'production_tenants', fullLabel: 'nc_production_tenants', phase: 'Phase 2' },
+  { entitlementLabel: 'envelopes', fullLabel: 'esign_envelopes', phase: 'Phase 2' },
+  { entitlementLabel: 'anonymous_users', fullLabel: 'nc_anonymous_users', phase: 'Phase 2' },
+  { entitlementLabel: 'docgen_document_generations', fullLabel: 'nc_docgen_document_generations', phase: 'Phase 2' },
+  { entitlementLabel: 'workflow_gateway', fullLabel: 'nc_workflow_gateway', phase: 'Phase 2' }
 ];
 
 const contentTags = [
@@ -241,7 +241,7 @@ export function WhatsNewPage() {
                   <tr key={row.fullLabel}>
                     <td className="delivery-table-group">{row.entitlementLabel}</td>
                     <td className="delivery-table-roles"><code>{row.fullLabel}</code></td>
-                    <td className="delivery-table-roles">Phase 1</td>
+                    <td className="delivery-table-roles">{row.phase}</td>
                   </tr>
                 ))}
               </tbody>
