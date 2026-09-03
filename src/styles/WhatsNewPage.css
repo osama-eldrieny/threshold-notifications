@@ -103,6 +103,14 @@
   width: 26%;
 }
 
+.delivery-table-col-status {
+  width: 14%;
+}
+
+.delivery-table-col-phase {
+  width: 12%;
+}
+
 .delivery-table td {
   padding: 14px 16px;
   border-bottom: 1px solid #e5e7eb;

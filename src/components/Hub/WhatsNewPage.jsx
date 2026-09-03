@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { LucideIcon } from '../Icons/LucideIcon';
 import '../../styles/WhatsNewPage.css';
 
@@ -8,9 +8,20 @@ const deliveryChannels = [
     group: 'Internal Team',
     roles: 'Account Owner, Account Manager, Customer Success, Customer Success Manager',
     thresholdStatus: 'Approaching, Reaching, Exceeding',
-    email: true,
+    email: false,
     slack: true,
-    inAppBanner: '—'
+    inAppBanner: '—',
+    phase: 'Phase 1'
+  },
+  {
+    id: 'internal-team-2',
+    group: 'Internal Team',
+    roles: 'Account Owner, Account Manager, Customer Success, Customer Success Manager',
+    thresholdStatus: 'Approaching, Reaching, Exceeding',
+    email: true,
+    slack: false,
+    inAppBanner: '—',
+    phase: 'Phase 2'
   },
   {
     id: 'customer-admin-1',
@@ -19,7 +30,8 @@ const deliveryChannels = [
     thresholdStatus: 'Approaching',
     email: true,
     slack: false,
-    inAppBanner: 'Dismissable'
+    inAppBanner: 'Dismissable',
+    phase: 'After Phase 2'
   },
   {
     id: 'customer-admin-2',
@@ -28,7 +40,8 @@ const deliveryChannels = [
     thresholdStatus: 'Reaching and Exceeding',
     email: true,
     slack: false,
-    inAppBanner: 'Non Dismissible'
+    inAppBanner: 'Non Dismissible',
+    phase: 'After Phase 2'
   },
   {
     id: 'customer-editor-1',
@@ -37,7 +50,8 @@ const deliveryChannels = [
     thresholdStatus: 'Approaching',
     email: false,
     slack: false,
-    inAppBanner: '—'
+    inAppBanner: '—',
+    phase: 'After Phase 2'
   },
   {
     id: 'customer-editor-2',
@@ -46,7 +60,8 @@ const deliveryChannels = [
     thresholdStatus: 'Reaching and Exceeding',
     email: false,
     slack: false,
-    inAppBanner: 'Dismissible'
+    inAppBanner: 'Dismissible',
+    phase: 'After Phase 2'
   }
 ];
 
@@ -70,14 +85,14 @@ const ctas = [
     user: 'Customer Admin',
     label: 'Contact Account Manager',
     redirectTo: 'Sends an email',
-    supported: 'Phase 1'
+    supported: 'After Phase 2'
   },
   {
     id: 'customer-admin-dashboard',
     user: 'Customer Admin',
     label: 'View Dashboard',
     redirectTo: 'Dashboard for Data Platform',
-    supported: 'Phase 1'
+    supported: 'After Phase 2'
   }
 ];
 
@@ -100,24 +115,21 @@ const thresholdStatuses = [
 ];
 
 const products = [
-  { entitlementLabel: 'app_user_sessions', fullLabel: 'nc_app_user_sessions', phase: 'Phase 1' },
   { entitlementLabel: 'workflow_instances', fullLabel: 'nc_workflow_instances', phase: 'Phase 1' },
-  { entitlementLabel: 'datastore_rows', fullLabel: 'nc_datastore_rows', phase: 'Phase 1' },
+  { entitlementLabel: 'DocGen for Workflow', fullLabel: 'nc_workflow_document_generations', phase: 'Phase 1' },
+  { entitlementLabel: 'DocGen for Platform', fullLabel: 'nc_docgen_document_generations', phase: 'Phase 1' },
+  { entitlementLabel: 'Orchestration Instances', fullLabel: 'nc_orchestration_instances', phase: 'Phase 1' },
   { entitlementLabel: 'ai_runtime_credits', fullLabel: 'nc_ai_runtime_credits', phase: 'Phase 1' },
-  { entitlementLabel: 'workflow_document_generations', fullLabel: 'nc_workflow_document_generations', phase: 'Phase 2' },
-  { entitlementLabel: 'app_count', fullLabel: 'nc_app_count', phase: 'Phase 2' },
-  { entitlementLabel: 'workflow_count', fullLabel: 'nc_workflow_count', phase: 'Phase 2' },
-  { entitlementLabel: 'non_production_tenants', fullLabel: 'nc_non_production_tenants', phase: 'Phase 2' },
-  { entitlementLabel: 'production_tenants', fullLabel: 'nc_production_tenants', phase: 'Phase 2' },
-  { entitlementLabel: 'envelopes', fullLabel: 'esign_envelopes', phase: 'Phase 2' },
-  { entitlementLabel: 'anonymous_users', fullLabel: 'nc_anonymous_users', phase: 'Phase 2' },
-  { entitlementLabel: 'docgen_document_generations', fullLabel: 'nc_docgen_document_generations', phase: 'Phase 2' },
-  { entitlementLabel: 'workflow_gateway', fullLabel: 'nc_workflow_gateway', phase: 'Phase 2' }
+  { entitlementLabel: 'User Sessions', fullLabel: 'nc_app_user_sessions', phase: 'Phase 1' },
+  { entitlementLabel: 'Agents', fullLabel: 'nc_agentflow_instances', phase: 'Phase 1' },
+  { entitlementLabel: 'AI Runtime Credits', fullLabel: 'nc_ai_runtime_credits', phase: 'Phase 1' },
+  { entitlementLabel: 'Data Rows', fullLabel: 'nc_datastore_rows', phase: 'Phase 1' },
+  { entitlementLabel: 'Data Capacity / Storage', fullLabel: 'nc_files_storage_size_mb', phase: 'Phase 1' },
+  { entitlementLabel: 'File in Storage', fullLabel: 'nc_files_count', phase: 'Phase 1' }
 ];
 
 const contentTags = [
   { tag: 'CompanyName', example: 'ACME Corp', available: false },
-  { tag: 'ThresholdStatus', example: 'Approaching / Reaching / Exceeding', available: true },
   { tag: 'EntitlemintId', example: 'nc_workflow_instances', available: true },
   { tag: 'ContractId', example: '800GC000001OhM6', available: true },
   { tag: 'ThresholdPercentage', example: '70%', available: true },
@@ -173,6 +185,14 @@ const updates = [
 ];
 
 export function WhatsNewPage() {
+  useEffect(() => {
+    const previousTitle = document.title;
+    document.title = "What's new in V1";
+    return () => {
+      document.title = previousTitle;
+    };
+  }, []);
+
   return (
     <div className="whats-new-layout">
       <div className="whats-new-header">
@@ -258,10 +278,11 @@ export function WhatsNewPage() {
                 <tr>
                   <th>User Group</th>
                   <th className="delivery-table-col-roles">Roles Included</th>
-                  <th>Threshold Status</th>
+                  <th className="delivery-table-col-status">Threshold Status</th>
                   <th>Email</th>
                   <th>Slack</th>
                   <th>In-App Banner</th>
+                  <th className="delivery-table-col-phase">Phase</th>
                 </tr>
               </thead>
               <tbody>
@@ -278,6 +299,7 @@ export function WhatsNewPage() {
                         {row.inAppBanner}
                       </span>
                     </td>
+                    <td className="delivery-table-roles">{row.phase}</td>
                   </tr>
                 ))}
               </tbody>
