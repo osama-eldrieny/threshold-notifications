@@ -124,8 +124,7 @@ const products = [
   { entitlementLabel: 'Agents', fullLabel: 'nc_agentflow_instances', phase: 'Phase 1' },
   { entitlementLabel: 'AI Runtime Credits', fullLabel: 'nc_ai_runtime_credits', phase: 'Phase 1' },
   { entitlementLabel: 'Data Rows', fullLabel: 'nc_datastore_rows', phase: 'Phase 1' },
-  { entitlementLabel: 'Data Capacity / Storage', fullLabel: 'nc_files_storage_size_mb', phase: 'Phase 1' },
-  { entitlementLabel: 'File in Storage', fullLabel: 'nc_files_count', phase: 'Phase 1' }
+  { entitlementLabel: 'Data Capacity / Storage', fullLabel: 'nc_files_storage_size_mb', phase: 'Phase 1' }
 ];
 
 const contentTags = [
